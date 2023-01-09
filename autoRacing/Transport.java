@@ -22,7 +22,7 @@ import java.util.Objects;
 //
 //метод «начать движение»,
 //метод «закончить движение».
-public class Transport implements Competing {
+abstract class Transport implements Competing {
     private String brand;
     private String model;
     private float engineCapacity;
