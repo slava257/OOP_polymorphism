@@ -22,7 +22,7 @@ import java.util.Objects;
 //
 //метод «начать движение»,
 //метод «закончить движение».
-abstract class Transport implements Competing {
+public abstract class Transport implements Competing {
     private String brand;
     private String model;
     private float engineCapacity;
@@ -151,6 +151,15 @@ abstract class Transport implements Competing {
     public int hashCode() {
         return Objects.hash(brand, model, engineCapacity);
     }
+//Задание 2
+//В каждый класс транспортного средства необходимо добавить поле, которое содержит его тип,
+// а также геттер и сеттер для этого поля, причем в разных классах транспортных средств будут разные типы.
+//В абстрактный класс Transport нужно добавить абстрактный метод printType,
+// который выводит в консоль значение типа транспортного средства,
+// или если тип транспортного средства не указан,
+// то строку вида "Данных по транспортному средству недостаточно".
+   public abstract void printType();
+
 
     @Override
     public String toString() {
@@ -158,6 +167,7 @@ abstract class Transport implements Competing {
                 "brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
                 ", engineCapacity=" + engineCapacity +
+                ", driver=" + driver +
                 ", competing='" + competing + '\'' +
                 '}';
     }
