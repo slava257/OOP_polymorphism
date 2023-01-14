@@ -80,4 +80,9 @@ public class Bus extends Transport implements Competing {
                 ", competing='" + competing + '\'' +
                 '}';
     }
+
+    @Override
+    public void passDiagnostics() {
+        throw new UnsupportedOperationException(getBrand()+" не может проходить диагностику");
+    }
 }

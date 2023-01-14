@@ -7,7 +7,7 @@ import driver.DriverD;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsuitableDriverLicenseException {
         PassengerCars audiA8 = new PassengerCars("Audi","A8 L TDI quattro", 3.0f);
         PassengerCars BMWZ8 = new PassengerCars("BMW","Z8",3.0f);
         PassengerCars kiaSportage =new PassengerCars("Kia","Sportage 4-го поколения",2.4f);
@@ -39,9 +39,42 @@ public class Main {
         Driver<Bus> andrey = new Driver<>("Andrey Karginov", "D", 25);
         andrey.toDriver(mercedes);
         iveco.printType();
+        passDiagnostics(mercedesBenz,iveco,mercedes);
+        changeYourDriverLicense(schumacher,shibalov);
     }
     private static void printInfoBus(Trucks trucks){
         System.out.println(trucks);
     }
+    //Задание 1
+    //Вернемся к нашему приложению автогонок.
+    //
+    //Добавьте в класс Transport метод «Пройти диагностику».
+    //Переопределите данный метод для классов «Легковые автомобили» и «Грузовые автомобили» —
+    // объекты данных типов могут проходить диагностику. Объекты класса «Автобусы» диагностику проходитьне могут.
+    //Необходимо создать собственное исключение, которое будет выбрасываться в случае если у водителя
+    // не указан тип водительских прав или категория прав неверна. Вместе с исключением должно появляться
+    // сообщение “Необходимо указать тип прав!”.
+    //Реализуйте обработку исключения с помощью одной из конструкций - try catch или try with resources.
 
+    public static void passDiagnostics(Transport... transports) {
+        for (Transport transport : transports) {
+            try {
+                transport.passDiagnostics();
+            }catch(UnsupportedOperationException e){
+                System.out.println("ошибка");
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static void changeYourDriverLicense(Driver... drivers) {
+        for (Driver driver : drivers) {
+            try {
+                driver.changeYourDriverLicense();
+            } catch (UnsuitableDriverLicenseException e) {
+                System.out.println("Ошибка");
+                System.out.println(e.getMessage());
+            }
+        }
+        }
     }

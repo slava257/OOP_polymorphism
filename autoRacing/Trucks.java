@@ -80,4 +80,9 @@ public class Trucks extends Transport implements Competing {
                 ", competing='" + competing + '\'' +
                 '}';
     }
+
+    @Override
+    public void passDiagnostics() {
+        super.passDiagnostics();
+    }
 }

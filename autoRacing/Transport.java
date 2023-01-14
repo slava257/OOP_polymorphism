@@ -171,5 +171,8 @@ public abstract class Transport implements Competing {
                 ", competing='" + competing + '\'' +
                 '}';
     }
+    public void passDiagnostics() {
+        System.out.println(getBrand()+" Нужно проити диагностику");
+    }
 }
 

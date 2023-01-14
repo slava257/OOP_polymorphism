@@ -2,6 +2,7 @@ package driver;
 
 import autoRacing.Competing;
 import autoRacing.Transport;
+import autoRacing.UnsuitableDriverLicenseException;
 
 //Задание 4
 //Создайте класс «Водитель», который будет иметь следующие параметры:
@@ -31,12 +32,15 @@ public class Driver < T extends Transport & Competing> {
     private String driverLicense;
     private int experience;
 
-    public Driver(String lastNameFirstNamePatronymic, String driverLicense, int experience) {
+    public Driver(String lastNameFirstNamePatronymic, String driverLicense, int experience) throws UnsuitableDriverLicenseException {
         this.lastNameFirstNamePatronymic = lastNameFirstNamePatronymic;
         this.driverLicense = driverLicense;
         this.experience = experience;
     }
 
+    public void changeYourDriverLicense() throws UnsuitableDriverLicenseException {
+        System.out.println("Водитель " + getLastNameFirstNamePatronymic() + " водительское удостоверение "+getDriverLicense());
+    }
 
     public void movementsToStart() {
         System.out.println("начать движение");
@@ -84,6 +88,7 @@ public class Driver < T extends Transport & Competing> {
         }
     }
 
+
     @Override
     public String toString() {
         return
@@ -97,5 +102,6 @@ public class Driver < T extends Transport & Competing> {
         System.out.println("Водитель " + getLastNameFirstNamePatronymic() + " упровляет автомабилем " +transport.getBrand()+ " и будет участвовать в заезде. ");
 
     }
+
 
 }
