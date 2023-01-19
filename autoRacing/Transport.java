@@ -1,7 +1,13 @@
 package autoRacing;
 
+import autoRacing.mechanic.Mechanic;
 import driver.Driver;
+import driver.DriverB;
+import driver.DriverC;
+import driver.DriverD;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 //Задание 1
 //Напишем приложение для автогонок. За основу структуры классов и данных возьмите предыдущую реализацию с классом Transport и наследниками, дополнив его новыми вводными.
@@ -22,11 +28,15 @@ import java.util.Objects;
 //
 //метод «начать движение»,
 //метод «закончить движение».
-public abstract class Transport implements Competing {
+public abstract class Transport<T extends Driver> implements Competing {
     private String brand;
     private String model;
     private float engineCapacity;
     private Driver driver;
+    private List<Mechanic<Transport>> mechanics = new ArrayList<>();
+    Mechanic<PassengerCars> slava = new Mechanic<>("Slava Ivanov", "OTS");
+    Mechanic<Trucks> oleg = new Mechanic<>("Oleg Semenov", "Bi-Bi");
+    Mechanic<Bus> sasha = new Mechanic<>("Saha Fedorov", "EA");
 
 
     public Transport(String brand, String model, float engineCapacity) {
@@ -44,6 +54,7 @@ public abstract class Transport implements Competing {
 
     }
 
+
     public void movementsToStart() {
         System.out.println("начать движение " + getBrand());
     }
@@ -52,18 +63,22 @@ public abstract class Transport implements Competing {
         System.out.println("закончить движение " + getBrand());
 
     }
+
+    String competing = "уходи на пит стоп";
+
     @Override
     public String competingPitStop(int lap) {
         if (lap % 3 == 0) {
         }
         return competing;
     }
+
     @Override
     public void CompetingBestLapTime(int lap) {
         float[] lapTime = new float[lap];
         for (int i = 0; i < lapTime.length; i++) {
             lapTime[i] = (float) (10 + (Math.random() * (11 - 10)));
-            System.out.print("Время каждого круга " +lapTime[i]+" минут ");
+            System.out.print("Время каждого круга " + lapTime[i] + " минут ");
         }
         System.out.println();
         float bestLapTime = lapTime[0];
@@ -73,14 +88,15 @@ public abstract class Transport implements Competing {
             }
         }
 
-        System.out.println("лучший круг "+bestLapTime);
+        System.out.println("лучший круг " + bestLapTime);
     }
+
     @Override
     public void CompetingMaximumSpeed(int lap) {
         int[] Speed = new int[lap];
         for (int i = 0; i < Speed.length; i++) {
             Speed[i] = (int) (180 + (Math.random() * (210 - 200)));
-            System.out.print(" скорость кругов " +Speed[i]+" км ");
+            System.out.print(" скорость кругов " + Speed[i] + " км ");
         }
         System.out.println();
         int MaximumSpeed = Speed[0];
@@ -89,7 +105,7 @@ public abstract class Transport implements Competing {
                 MaximumSpeed = Speed[i];
             }
         }
-        System.out.println(" лучшая скорость круга " +MaximumSpeed);
+        System.out.println(" лучшая скорость круга " + MaximumSpeed);
     }
 
     public String getBrand() {
@@ -103,6 +119,10 @@ public abstract class Transport implements Competing {
         } else {
             this.brand = brand;
         }
+    }
+
+    public List<Mechanic<Transport>> getMechanics() {
+        return mechanics;
     }
 
     public String getModel() {
@@ -137,7 +157,6 @@ public abstract class Transport implements Competing {
         this.driver = driver;
     }
 
-    String competing = "уходи на пит стоп";
 
     @Override
     public boolean equals(Object o) {
@@ -151,14 +170,15 @@ public abstract class Transport implements Competing {
     public int hashCode() {
         return Objects.hash(brand, model, engineCapacity);
     }
-//Задание 2
+
+    //Задание 2
 //В каждый класс транспортного средства необходимо добавить поле, которое содержит его тип,
 // а также геттер и сеттер для этого поля, причем в разных классах транспортных средств будут разные типы.
 //В абстрактный класс Transport нужно добавить абстрактный метод printType,
 // который выводит в консоль значение типа транспортного средства,
 // или если тип транспортного средства не указан,
 // то строку вида "Данных по транспортному средству недостаточно".
-   public abstract void printType();
+    public abstract void printType();
 
 
     @Override
@@ -168,11 +188,14 @@ public abstract class Transport implements Competing {
                 ", model='" + model + '\'' +
                 ", engineCapacity=" + engineCapacity +
                 ", driver=" + driver +
-                ", competing='" + competing + '\'' +
+                ", competing='" + competing + '\'' +" механик "+mechanics+
                 '}';
     }
-    public void passDiagnostics() {
-        System.out.println(getBrand()+" Нужно проити диагностику");
-    }
-}
 
+    public void passDiagnostics() {
+        System.out.println(getBrand() + " Нужно проити диагностику");
+    }
+
+
+
+}

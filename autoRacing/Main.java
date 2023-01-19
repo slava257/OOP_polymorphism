@@ -1,50 +1,80 @@
 package autoRacing;
 
+import autoRacing.mechanic.Mechanic;
+import autoRacing.mechanic.ServiceStation;
 import driver.Driver;
 import driver.DriverB;
 import driver.DriverC;
 import driver.DriverD;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 public class Main {
 
+
     public static void main(String[] args) throws UnsuitableDriverLicenseException {
-        PassengerCars audiA8 = new PassengerCars("Audi","A8 L TDI quattro", 3.0f);
-        PassengerCars BMWZ8 = new PassengerCars("BMW","Z8",3.0f);
-        PassengerCars kiaSportage =new PassengerCars("Kia","Sportage 4-го поколения",2.4f);
-        PassengerCars hyundaiAvante = new PassengerCars("Hyundai","Avante",1.6f, PassengerCars.BodyType.SEDAN.SEDAN.SEDAN);
+        List<Transport> transports = new ArrayList<>();
+        PassengerCars audiA8 = new PassengerCars("Audi", "A8 L TDI quattro", 3.0f);
+        PassengerCars BMWZ8 = new PassengerCars("BMW", "Z8", 3.0f);
+        PassengerCars kiaSportage = new PassengerCars("Kia", "Sportage 4-го поколения", 2.4f);
+        PassengerCars hyundaiAvante = new PassengerCars("Hyundai", "Avante", 1.6f, PassengerCars.BodyType.SEDAN.SEDAN.SEDAN);
 
-        Bus mercedes = new Bus("Mercedes","Sprinter",2.0f);
-        Bus volkswagen = new Bus("Volkswagen","Crafter",2.4f, Bus.Capacity.AVARAGE);
-        Bus renault = new Bus("Renault","Trafic",2.8f);
+        Bus mercedes = new Bus("Mercedes", "Sprinter", 2.0f);
+        Bus volkswagen = new Bus("Volkswagen", "Crafter", 2.4f, Bus.Capacity.AVARAGE);
+        Bus renault = new Bus("Renault", "Trafic", 2.8f);
 
 
-        Trucks mercedesBenz = new Trucks("Mercedes-Benz","Atego",9.0f);
-        Trucks iveco = new Trucks("IVECO","Daily",9.6f, Trucks.LoadCapacity.N3);
-        Trucks kamaz = new Trucks("KAMAZ","4326-9",10.8f);
-        Trucks volvo = new Trucks("Volvo","FMX 8x4",10.2f);
+        Trucks mercedesBenz = new Trucks("Mercedes-Benz", "Atego", 9.0f);
+        Trucks iveco = new Trucks("IVECO", "Daily", 9.6f, Trucks.LoadCapacity.N3);
+        Trucks kamaz = new Trucks("KAMAZ", "4326-9", 10.8f);
+        Trucks volvo = new Trucks("Volvo", "FMX 8x4", 10.2f);
+
         printInfoBus(iveco);
         volvo.competingPitStop(4);
         volvo.CompetingBestLapTime(4);
         printInfoBus(volvo);
         audiA8.CompetingMaximumSpeed(3);
 
-        DriverB schumacher = new DriverB("Michael Schumacher","B",15);
-        DriverC shibalov = new DriverC("Anton Shibalov","C",19);
-        DriverD karginov = new DriverD("Andrey Karginov","D",25);
+        List<Driver> drivers = new ArrayList<>();
+        DriverB schumacher = new DriverB("Michael Schumacher", "B", 15);
+        DriverC shibalov = new DriverC("Anton Shibalov", "C", 19);
+        DriverD karginov = new DriverD("Andrey Karginov", "D", 25);
 
-        Driver<PassengerCars> michael =new Driver<>("Michael Schumacher","B",15);
+        Driver<PassengerCars> michael = new Driver<>("Michael Schumacher", "B", 15);
         michael.toDriver(BMWZ8);
         Driver<Trucks> anton = new Driver<>("Anton Shibalov", "C", 19);
         anton.toDriver(iveco);
         Driver<Bus> andrey = new Driver<>("Andrey Karginov", "D", 25);
         andrey.toDriver(mercedes);
         iveco.printType();
-        passDiagnostics(mercedesBenz,iveco,mercedes);
-        changeYourDriverLicense(schumacher,shibalov);
+        passDiagnostics(mercedesBenz, iveco, mercedes);
+        changeYourDriverLicense(schumacher, shibalov);
+        //
+
+
+        List<Mechanic<Transport>> mechanics = new ArrayList<>();
+        Mechanic<PassengerCars> slava = new Mechanic<>("Slava Ivanov", "OTS");
+        Mechanic<Trucks> oleg = new Mechanic<>("Oleg Semenov", "Bi-Bi");
+        Mechanic<Bus> sasha = new Mechanic<>("Saha Fedorov", "EA");
+        slava.info(schumacher);
+        slava.performMaintenance(BMWZ8,300);
+        ServiceStation.ofc(BMWZ8);
+        ServiceStation.ofc(iveco);
+        ServiceStation.ofc(audiA8);
+        ServiceStation.conductATechnicalInspection(audiA8);
+
     }
+
+
     private static void printInfoBus(Trucks trucks){
         System.out.println(trucks);
     }
+
+
+
     //Задание 1
     //Вернемся к нашему приложению автогонок.
     //

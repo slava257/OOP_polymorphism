@@ -1,6 +1,10 @@
 package autoRacing;
 
+import autoRacing.mechanic.Mechanic;
 import driver.Driver;
+
+import java.util.List;
+
 //Задание 1
 //В ранее реализованную модель для автомобильных гонок добавьте для каждой категории перечисления.
 // Для каждого перечисления нужно определить аргументы и метод toString для вывода данных аргументов.
@@ -30,8 +34,8 @@ public class PassengerCars  extends Transport implements Competing {
         this.bodyType = bodyType;
     }
 
-    public enum BodyType{
-        SEDAN("Седаен"),HATCHBACK("Хетчбек"),COUPE("Купе"),STATION_WAGON("Универсал"),SUV("Внедорожник"),CROSSOVER("Кроссовер"),PICKUP_TRUCK("Пикап"),VAN("Фургон"),MINIVAN("Минивэн");
+    public enum BodyType {
+        SEDAN("Седаен"), HATCHBACK("Хетчбек"), COUPE("Купе"), STATION_WAGON("Универсал"), SUV("Внедорожник"), CROSSOVER("Кроссовер"), PICKUP_TRUCK("Пикап"), VAN("Фургон"), MINIVAN("Минивэн");
         private String bodyName;
 
         BodyType(String bodyName) {
@@ -45,10 +49,11 @@ public class PassengerCars  extends Transport implements Competing {
         @Override
         public String toString() {
             return "BodyType{" +
-                    "bodyName='" + bodyName + '\''+
+                    "bodyName='" + bodyName + '\'' +
                     '}';
         }
     }
+
     public PassengerCars(String brand, String model, float engineCapacity, Driver driver, String competing) {
         super(brand, model, engineCapacity, driver);
     }
@@ -61,7 +66,7 @@ public class PassengerCars  extends Transport implements Competing {
     public void printType() {
         if (null != bodyType) {
             System.out.println(getBodyType());
-        }else {
+        } else {
             System.out.println("Данных по транспортному средству недостаточно");
         }
     }
@@ -84,6 +89,8 @@ public class PassengerCars  extends Transport implements Competing {
     public void passDiagnostics() {
         super.passDiagnostics();
     }
+
+
 }
 
 

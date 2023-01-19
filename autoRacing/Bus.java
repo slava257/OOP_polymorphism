@@ -1,5 +1,10 @@
 package autoRacing;
 
+import autoRacing.mechanic.Mechanic;
+import driver.Driver;
+
+import java.util.List;
+
 public class Bus extends Transport implements Competing {
 //А для автобусов добавьте классификацию с помощью перечислений по типу вместимости:
 //
@@ -20,7 +25,6 @@ public class Bus extends Transport implements Competing {
     }
 
     private Capacity capacity;
-
     public enum Capacity {
         ESPECIALLY_SMALL(null, 10), SMALL(null, 25), AVARAGE(40, 50), BIG(60, 80), ESPECIALLY_BIG(100, 120);
 
@@ -85,4 +89,6 @@ public class Bus extends Transport implements Competing {
     public void passDiagnostics() {
         throw new UnsupportedOperationException(getBrand()+" не может проходить диагностику");
     }
+
+
 }
