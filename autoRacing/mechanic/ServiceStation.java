@@ -40,11 +40,10 @@ public  class ServiceStation <T extends Transport>{
     }
 
     public static void conductATechnicalInspection(Transport transport) {
-        if (transportsQ == transportsQ) {
+
            transportsQ.remove(transport);
             transportsQ.peek();
             System.out.println(transportsQ);
-        }
             System.out.println("провести техосмотр авто " + transport.getBrand());
         }
 
