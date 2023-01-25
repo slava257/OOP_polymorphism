@@ -32,7 +32,7 @@ public  class ServiceStation <T extends Transport>{
 
 
 
-    public static void ofc(Transport transport) {
+    public static void addToQueue(Transport transport) {
         transportsQ.add( transport);
         System.out.println(transportsQ);
 
