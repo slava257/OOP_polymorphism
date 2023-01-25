@@ -7,16 +7,13 @@ import driver.DriverB;
 import driver.DriverC;
 import driver.DriverD;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class Main {
 
 
     public static void main(String[] args) throws UnsuitableDriverLicenseException {
-        List<Transport> transports = new ArrayList<>();
+        List<Transport> transports  = new ArrayList<>();
         PassengerCars audiA8 = new PassengerCars("Audi", "A8 L TDI quattro", 3.0f);
         PassengerCars BMWZ8 = new PassengerCars("BMW", "Z8", 3.0f);
         PassengerCars kiaSportage = new PassengerCars("Kia", "Sportage 4-го поколения", 2.4f);
@@ -52,18 +49,34 @@ public class Main {
         iveco.printType();
         passDiagnostics(mercedesBenz, iveco, mercedes);
         changeYourDriverLicense(schumacher, shibalov);
-        //
-
-
-        List<Mechanic<Transport>> mechanics = new ArrayList<>();
+        //Задание 1
+        //Вернемся к нашему приложению автогонок.
+        //Ранее мы создали список автомобилей и механиков.
+        //Перепишите приложение: если в случае ошибки какой-либо из объектов будет занесен в базу два раза, то в консоль выведется информация без повторов.
+        //Трансформируйте список механиков в map, где в качестве ключа будет автомобиль, а в качестве значения — механик, который его обслуживает.
+        System.out.println("Map");
+        Map<Transport,Mechanic> mechanics =new HashMap<>();
         Mechanic<PassengerCars> slava = new Mechanic<>("Slava Ivanov", "OTS");
         Mechanic<Trucks> oleg = new Mechanic<>("Oleg Semenov", "Bi-Bi");
         Mechanic<Bus> sasha = new Mechanic<>("Saha Fedorov", "EA");
+        mechanics.put(audiA8,slava);
+        mechanics.put(audiA8,slava);
+        mechanics.put(audiA8,sasha);
+        mechanics.put(hyundaiAvante,slava);
+
+        for(Map.Entry<Transport,Mechanic>mechanicMap:mechanics.entrySet()){
+            System.out.println(mechanicMap.getKey()+ ": " +mechanicMap.getValue());
+        }
+        System.out.println(mechanics.get(audiA8));
+        System.out.println(mechanics.get(hyundaiAvante));
+
+
+        System.out.println("List");
         slava.info(schumacher);
         slava.performMaintenance(BMWZ8,300);
-        ServiceStation.ofc(BMWZ8);
-        ServiceStation.ofc(iveco);
-        ServiceStation.ofc(audiA8);
+        ServiceStation.addToQueue(BMWZ8);
+        ServiceStation.addToQueue(iveco);
+        ServiceStation.addToQueue(audiA8);
         ServiceStation.conductATechnicalInspection(audiA8);
 
     }
