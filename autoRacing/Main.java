@@ -39,6 +39,25 @@ public class Main {
         DriverB schumacher = new DriverB("Michael Schumacher", "B", 15);
         DriverC shibalov = new DriverC("Anton Shibalov", "C", 19);
         DriverD karginov = new DriverD("Andrey Karginov", "D", 25);
+        drivers.add(schumacher);
+        drivers.add(shibalov);
+        drivers.add(karginov);
+        //Задание 1
+        //Вернемся к нашему приложению автогонок.
+        //
+        //Создайте множество водителей, чтобы в случае добавления одного и того же водителя в базу два раза, в консоль выводилась информация без повторов.
+        //
+        //А также выведите всех водителей в консоль с помощью итератора.
+        System.out.println("Set");
+        Set<Driver> driver =new HashSet<>();
+        driver.addAll(drivers);
+        driver.add(schumacher);
+        System.out.println("--------- "+driver);
+        Iterator<Driver>iterator = driver.iterator();
+        while(iterator.hasNext()) {
+            Driver next = iterator.next();
+            System.out.println(next);
+        }
 
         Driver<PassengerCars> michael = new Driver<>("Michael Schumacher", "B", 15);
         michael.toDriver(BMWZ8);
