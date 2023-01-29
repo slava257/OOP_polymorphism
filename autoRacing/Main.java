@@ -12,6 +12,8 @@ import java.util.*;
 public class Main {
 
 
+
+
     public static void main(String[] args) throws UnsuitableDriverLicenseException {
         List<Transport> transports  = new ArrayList<>();
         PassengerCars audiA8 = new PassengerCars("Audi", "A8 L TDI quattro", 3.0f);
@@ -57,7 +59,9 @@ public class Main {
         while(iterator.hasNext()) {
             Driver next = iterator.next();
             System.out.println(next);
+
         }
+
 
         Driver<PassengerCars> michael = new Driver<>("Michael Schumacher", "B", 15);
         michael.toDriver(BMWZ8);
@@ -139,4 +143,14 @@ public class Main {
             }
         }
         }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+}
