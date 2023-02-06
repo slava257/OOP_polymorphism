@@ -21,5 +21,20 @@ public class DriverC extends Driver<Trucks> {
     public String toString() {
         return "Водитель " + getLastNameFirstNamePatronymic() + " водительское удостоверение "+getDriverLicense();
     }
+
+    @Override
+    public void changeYourDriverLicense() throws UnsuitableDriverLicenseException {
+        super.changeYourDriverLicense();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
 
